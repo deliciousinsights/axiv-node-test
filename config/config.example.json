@@ -1,0 +1,58 @@
+{
+  "host": "localhost",
+  "port": 9999,
+  "cors": {
+    "origin": "*"
+  },
+  "database": {
+    "core": "axiv_core",
+    "tenants": [{ "id": "FL", "database": "axiv_core1" }],
+    "host": "localhost",
+    "port": 3306,
+    "username": "axiv",
+    "password": "axiv",
+    "dialect": "mariadb",
+    "timezone": "Europe/Paris",
+    "test": {
+      "core": "axiv_core_test",
+      "tenants": [{ "id": "FL", "database": "axiv_core_test1" }],
+      "username": "axiv",
+      "password": "axiv"
+    },
+    "option": {
+      "sync": false,
+      "force": false,
+      "logging": false,
+      "dateStrings": true,
+      "typeCast": true,
+      "decimalNumbers": true,
+      "pool": {
+        "max": 5,
+        "min": 0,
+        "acquire": 30000,
+        "idle": 10000
+      }
+    },
+    "model": {
+      "freezeTableName": true,
+      "createdAt": "created_at",
+      "updatedAt": "updated_at"
+    },
+    "offset": 0,
+    "limit": 10
+  },
+  "auth": {
+    "token": {
+      "key": "UhojWlobnPDD2krl",
+      "lifeTime": "30min"
+    },
+    "refreshToken": {
+      "saltRounds": 10,
+      "expiration": "1 DAY"
+    },
+    "user": {
+      "saltRounds": 10
+    }
+  },
+  "maxBodySize": "2mb"
+}

@@ -1,0 +1,13 @@
+# Christophe only
+TODO.md
+STEPS.md
+
+node_modules
+config-dev.json
+.env
+.env.development
+
+# editor setting
+.idea
+.vscode
+logs

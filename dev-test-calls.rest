@@ -1,0 +1,70 @@
+# DEV NOTE: this requires the VS Code "REST Client" extension:
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+
+@host = http://localhost:9999
+
+### Login
+# @name logIn
+POST {{host}}/auth/login
+Content-Type: application/json
+X-Instance-Code: AA
+
+{
+  "email": "admin@example.com",
+  "password": "123"
+}
+
+### Healthcheck
+GET {{host}}/healthcheck
+Authorization: {{logIn.response.body.token}}
+X-Instance-Code: AA
+
+### List quizzes
+# @name listQuizzes
+GET {{host}}/quizzes
+Authorization: {{logIn.response.body.token}}
+X-Instance-Code: AA
+
+### List single-category quizzes
+GET {{host}}/quizzes/singlecat
+Authorization: {{logIn.response.body.token}}
+X-Instance-Code: AA
+
+### List multiple-category quizzes
+GET {{host}}/quizzes/multicat
+Authorization: {{logIn.response.body.token}}
+X-Instance-Code: AA
+
+### Get quiz (with its questions)
+GET {{host}}/quizzes/{{listQuizzes.response.body.0.id}}
+Authorization: {{logIn.response.body.token}}
+X-Instance-Code: AA
+
+### Create question within a quiz
+POST {{host}}/quizzes/{{listQuizzes.response.body.0.id}}/questions
+Content-Type: application/json
+Authorization: {{logIn.response.body.token}}
+X-Instance-Code: AA
+
+{
+  "title": "What is the atomic number of Zinc?",
+  "category": "Chemistry",
+  "answers": [6, 30, 42, 60],
+  "correctAnswer": 30
+}
+
+### Get all questions
+# @name listQuestions
+GET {{host}}/questions
+Authorization: {{logIn.response.body.token}}
+X-Instance-Code: AA
+
+### Get a single question
+GET {{host}}/questions/{{listQuestions.response.body.0.id}}
+Authorization: {{logIn.response.body.token}}
+X-Instance-Code: AA
+
+### Remove a single question
+DELETE {{host}}/questions/{{listQuestions.response.body.0.id}}
+Authorization: {{logIn.response.body.token}}
+X-Instance-Code: AA

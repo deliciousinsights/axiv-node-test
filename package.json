@@ -1,0 +1,135 @@
+{
+  "name": "nodejs-tech-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A starter codebase for Axiv internal Node.js-related evaluation",
+  "author": "Christophe Porteneuve <christophe@delicious-insights.com> (https://delicious-insights.com/en/)",
+  "license": "No-License",
+  "type": "module",
+  "engines": {
+    "node": ">=18",
+    "npm": ">=6"
+  },
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "seed": "node --no-warnings=ExperimentalWarning database/seed-script.js",
+    "start": "node src/server.js",
+    "test:watch": "npm test -- --watch",
+    "test": "cross-env NODE_OPTIONS='--no-warnings=ExperimentalWarning --experimental-vm-modules' jest --runInBand"
+  },
+  "eslintConfig": {
+    "extends": [
+      "standard",
+      "prettier",
+      "plugin:import/errors"
+    ],
+    "plugins": [
+      "prettier",
+      "import"
+    ],
+    "rules": {
+      "no-irregular-whitespace": 0,
+      "object-shorthand": 0,
+      "import/no-unresolved": [
+        2,
+        {
+          "ignore": [
+            "^@axiv/"
+          ]
+        }
+      ]
+    },
+    "env": {
+      "commonjs": true,
+      "es6": true,
+      "jest": true,
+      "node": true
+    }
+  },
+  "prettier": {
+    "jsxSingleQuote": true,
+    "semi": false,
+    "singleQuote": true
+  },
+  "jest": {
+    "testTimeout": 5000,
+    "transform": {},
+    "rootDir": "src",
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ]
+  },
+  "deliciousImportSort": {
+    "mainOrder": [
+      "absolute",
+      "relative",
+      "bare"
+    ]
+  },
+  "importSort": {
+    ".js": {
+      "style": "delicious"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "validate-branch-name": {
+    "pattern": "^(main|dev)$|^(chore|docs|feat|fix|perf|refactor|style|test)/.+$",
+    "errorMsg": "🤨 The branch you’re trying to push doesn’t follow our naming conventions, try renaming it with `git branch -m <current-name> <new-name>`\n\nSee https://git.axivit.com/udf/documentation/-/blob/main/git/git-naming.md for details."
+  },
+  "lint-staged": {
+    "*.js": "eslint",
+    "*.{js,json,md,mdx,html,css,scss}": "prettier --write"
+  },
+  "git-precommit-checks": {
+    "rules": [
+      {
+        "message": "😨 Looks like you left some Git conflict markers in there!",
+        "regex": "/^[<>|=]{4,}/m"
+      },
+      {
+        "filter": "\\.spec\\.js$",
+        "message": "😨 Looks like you’re artificially trimming down the test suite!",
+        "nonBlocking": "true",
+        "regex": "/\\b(?:describe|it|test).(?:only|skip)\\b/m"
+      },
+      {
+        "filter": "\\.js$",
+        "message": "🤔 Sounds like you’ve got some pending work to do?",
+        "nonBlocking": "true",
+        "regex": "(?:FIXME|TODO)"
+      }
+    ]
+  },
+  "dependencies": {
+    "@axiv/backend-core": "git+ssh://git@git.axivit.com:udf/node-master-project#semver:^v1.0.10",
+    "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.1",
+    "@commitlint/config-conventional": "^17.0.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "git-precommit-checks": "^3.1.0",
+    "husky": "^8.0.1",
+    "import-sort-style-delicious": "^1.0.2",
+    "jest": "^28.0.3",
+    "jest-watch-typeahead": "^1.1.0",
+    "lint-staged": "^13.0.3",
+    "nodemon": "^2.0.16",
+    "prettier": "^2.6.2",
+    "supertest": "^6.2.2",
+    "validate-branch-name": "^1.3.0"
+  }
+}

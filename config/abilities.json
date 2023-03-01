@@ -1,0 +1,16 @@
+{
+  "Admin": {
+    "__description": "Full-blown administrator",
+    "Users": "manage",
+    "Collect": "manage",
+    "Dashboard": "read"
+  },
+  "Reader": {
+    "__description": "Read-only, lowest-rights user",
+    "Dashboard": "read"
+  },
+  "Tester": {
+    "__description": "A sentinel role identifying loaded abilities as test-only",
+    "Dashboard": "read"
+  }
+}
