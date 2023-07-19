@@ -6,7 +6,7 @@ import routes from './routes/index.js'
 const app = await createApp({
   coreAssociations: registerCoreAssociations,
   coreModels: registerCoreModels,
-  routes: routes,
+  routes,
 })
 
 export default app

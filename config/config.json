@@ -6,7 +6,12 @@
   },
   "database": {
     "core": "axiv_node_eval",
-    "tenants": [{ "id": "AA", "database": "axiv_node_eval1" }],
+    "tenants": [
+      {
+        "id": "AA",
+        "database": "axiv_node_eval1"
+      }
+    ],
     "host": "localhost",
     "port": 3306,
     "username": "axiv_eval",
@@ -15,14 +20,18 @@
     "timezone": "Europe/Paris",
     "test": {
       "core": "axiv_node_eval_test",
-      "tenants": [{ "id": "AA", "database": "axiv_node_eval_test1" }],
+      "tenants": [
+        {
+          "id": "AA",
+          "database": "axiv_node_eval_test1"
+        }
+      ],
       "username": "axiv_eval",
       "password": "axiv_eval"
     },
     "option": {
       "sync": false,
       "force": false,
-      "logging": true,
       "dateStrings": true,
       "typeCast": true,
       "decimalNumbers": true,
